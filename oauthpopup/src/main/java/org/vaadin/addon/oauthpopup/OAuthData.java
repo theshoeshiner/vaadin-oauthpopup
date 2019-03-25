@@ -293,7 +293,7 @@ public class OAuthData {
 		String url;
 		if (isOAuth20()) {
 			// OAuth20Service automatically injects "redirect_uri" parameter based on OAuthConfig
-			url = ((OAuth20Service) getService()).getAuthorizationUrl();
+			url = ((OAuth20Service) getService()).getAuthorizationUrl(config.getAdditionalAuthorizationParameters());
 		} else {
 			url = ((OAuth10aService) getService()).getAuthorizationUrl(requestToken);
 			url = config.getCallbackInjector().injectParameterToCallback(url, config.getCallbackParameterName(), config.getCallbackUrl());

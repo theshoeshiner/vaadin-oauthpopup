@@ -2,6 +2,8 @@ package org.vaadin.addon.oauthpopup;
 
 import java.io.OutputStream;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.SignatureType;
@@ -36,6 +38,7 @@ public class OAuthPopupConfig {
 	private String userAgent;
 	private OAuthCallbackInjector callbackInjector;
 	private String errorParameterName;
+	private Map<String, String> additionalAuthorizationParameters;
 	
 	// Set by OAuthData
 	private String state;
@@ -43,6 +46,7 @@ public class OAuthPopupConfig {
 	protected OAuthPopupConfig(String apiKey, String apiSecret) { 
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
+		this.additionalAuthorizationParameters = new HashMap<>();
 		initializeCallbackUrl();
 	}
 	
@@ -402,4 +406,16 @@ public class OAuthPopupConfig {
 		this.errorParameterName = errorParameterName;
 		return this;
 	}
+	
+	public OAuthPopupConfig setAuthorizationRequestParameter(String name, String value) {
+		additionalAuthorizationParameters.put(name, value);
+		return this;
+	}
+
+	public Map<String, String> getAdditionalAuthorizationParameters() {
+		return additionalAuthorizationParameters;
+	}
+	
+	
+	
 }
