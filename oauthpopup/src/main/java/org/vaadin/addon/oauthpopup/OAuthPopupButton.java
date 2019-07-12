@@ -140,4 +140,8 @@ public class OAuthPopupButton extends Button {
 	public void setPopupWindowFeatures(String features) {
 		opener.setFeatures(features);
 	}
+	
+	public OAuthPopupOpener getOpener() {
+		return opener;
+	}
 }
